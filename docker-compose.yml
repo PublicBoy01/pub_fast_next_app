@@ -1,0 +1,49 @@
+# Composeファイルのバージョン指定
+version: '3.8'
+
+# 以下、起動したいコンテナを複数指定でまとめて管理
+services:
+  backend:
+    build: ./backend
+    container_name: fastapi_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/code
+    working_dir: /code
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build: ./frontend
+    container_name: nextjs_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: npm run dev
+
+# memo ==============================================================================
+# version: '3.8'  # Composeのバージョン
+
+# services:
+#   backend:  # バックエンドAPIサーバー
+#     build: ./backend
+#     container_name: fastapi_app  # コンテナ名指定
+#     ports:
+#       - "8000:8000"  # ポートマッピング
+#     volumes:
+#       - ./backend:/code  # ホストとコンテナのコード共有
+#     working_dir: /code
+#     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+#   frontend:  # フロントエンドNext.jsアプリ
+#     build: ./frontend
+#     container_name: nextjs_app
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - ./frontend:/app
+#     working_dir: /app
+#     command: npm run dev
+
