@@ -10,7 +10,7 @@ http://localhost:3000/
 ---------------------------------------------------
 ## memo
 
-### docker-compose.yml　これがあることで　
+### docker-compose.yml　
 
 以下コマンドでFAST APIとNext.jsをまとめて立ち上げることができる。
 ```
